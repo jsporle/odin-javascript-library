@@ -48,11 +48,32 @@ function removeBookFromLibrary(id) {
 }
 
 //test books
-const harryPotter = new Book("Harry Potter", "JK Rowling", "completed-reading");
-const theHobbit = new Book("The Hobbit", "JRR Tolkien", "completed-reading");
+const testLibrary = [
+    ["Harry Potter", "JK Rowling", "completed-reading"],
+    ["The Hobbit", "JRR Tolkien", "completed-reading"],
+    ["Never Let Me Go", "Kazuo Ishiguro", "completed-reading"],
+    ["The Road", "Cormac McCarthy", "currently-reading"],
+    ["Middlesex", "Jeffrey Eugenides", "want-to-read"],
+    ["White Teeth", "Zadie Smith", "completed-reading"],
+    ["Atonement", "Ian McEwan", "want-to-read"],
+    ["Gilead", "Marilynne Robinson", "currently-reading"],
+    ["The Brief Wondrous Life of Oscar Wao", "Junot Díaz", "completed-reading"],
+    ["Wolf Hall", "Hilary Mantel", "want-to-read"],
+    ["A Visit from the Goon Squad", "Jennifer Egan", "currently-reading"],
+    ["Persepolis", "Marjane Satrapi", "completed-reading"],
+    ["The Goldfinch", "Donna Tartt", "want-to-read"],
+    ["Normal People", "Sally Rooney", "currently-reading"],
+    ["Lincoln in the Bardo", "George Saunders", "completed-reading"],
+    ["Circe", "Madeline Miller", "want-to-read"],
+    ["The Sellout", "Paul Beatty", "currently-reading"],
+    ["Hamnet", "Maggie O'Farrell", "completed-reading"],
+    ["Klara and the Sun", "Kazuo Ishiguro", "want-to-read"],
+    ["Americanah", "Chimamanda Ngozi Adichie", "currently-reading"]
+];
 
-addBookToLibrary(harryPotter);
-addBookToLibrary(theHobbit);
+testLibrary.forEach(data => {
+    addBookToLibrary(new Book(...data));
+});
 
 //html display
 const libraryContainer = document.querySelector('.current-library');
