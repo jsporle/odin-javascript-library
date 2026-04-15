@@ -25,8 +25,19 @@ const libraryContainer = document.querySelector('.current-library');
 
 myLibrary.forEach((item) => {
     const bookDiv = document.createElement("div");
-    bookDiv.id = item.ID;
     bookDiv.classList.add("book-card");
-    bookDiv.textContent = `${item.title} by ${item.author}`;
+    bookDiv.id = item.ID;
+
+    const bookTitle = document.createElement("h3");
+    bookTitle.textContent = item.title;
+    bookTitle.classList.add("book-title");
+
+    const bookAuthor = document.createElement("p");
+    bookAuthor.textContent = `by ${item.author}`;
+    bookAuthor.classList.add("book-author");
+
+    bookDiv.appendChild(bookTitle);
+    bookDiv.appendChild(bookAuthor);
+    
     libraryContainer.appendChild(bookDiv);
 });

@@ -1,0 +1,25 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.current-library {
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));  
+    gap: 3rem;
+}
+
+.book-card {
+    display: flex;
+    flex-flow: column;
+    align-items: flex-end;
+    justify-content: center;
+
+    height: 15rem;
+    width: 10rem;
+    padding: 1em;
+    border: 0.1rem solid black;
+    border-radius: 0.25rem 1rem 1rem 0.25rem;
+    box-shadow: 10px 5px 5px rgb(164, 164, 164);
+}
