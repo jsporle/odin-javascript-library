@@ -15,7 +15,6 @@ function addBookToLibrary(bookObject) {
     myLibrary.push(bookObject);
 }
 
-
 //test books
 const harryPotter = new Book("Harry Potter", "JK Rowling", "completed-reading");
 const theHobbit = new Book("The Hobbit", "JRR Tolkien", "completed-reading");
@@ -26,7 +25,7 @@ addBookToLibrary(theHobbit);
 //html display
 const libraryContainer = document.querySelector('.current-library');
 
-myLibrary.forEach((item) => {
+function createBookCard(item) {
     const bookDiv = document.createElement("div");
     bookDiv.classList.add("book-card");
     bookDiv.id = item.ID;
@@ -43,7 +42,9 @@ myLibrary.forEach((item) => {
     bookDiv.appendChild(bookAuthor);
     
     libraryContainer.appendChild(bookDiv);
-});
+};
+
+myLibrary.forEach(createBookCard);
 
 // listen for html form input 
 const bookForm = document.querySelector('.add-book-form');
@@ -58,6 +59,7 @@ bookForm.addEventListener('submit', (event) => {
 
     const newBook = new Book(title, author, status);
     addBookToLibrary(newBook);
+    createBookCard(newBook);
 
     bookForm.reset();
     console.log(myLibrary)

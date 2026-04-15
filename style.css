@@ -26,6 +26,7 @@ h1 {
     display: flex;
     flex-flow: column;
     align-items: flex-end;
+    text-align: end;
     justify-content: center;
 
     height: 15rem;
