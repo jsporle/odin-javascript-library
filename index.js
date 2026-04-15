@@ -57,6 +57,17 @@ addBookToLibrary(theHobbit);
 //html display
 const libraryContainer = document.querySelector('.current-library');
 
+const sideForm = document.querySelector('.container-add-book-form');
+const toggleBtn = document.querySelector('#toggle-form');
+
+toggleBtn.addEventListener('click', () => {
+    sideForm.classList.toggle('open');
+});
+
+document.querySelector('.add-book-form').addEventListener('submit', () => {
+    sideForm.classList.remove('open');
+})
+
 function createBookCard(item) {
     const bookDiv = document.createElement("div");
     bookDiv.classList.add("book-card");
