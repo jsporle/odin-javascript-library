@@ -1,6 +1,60 @@
+@font-face {
+    font-family: 'Aleo';
+    src: url('fonts/Aleo-Regular.woff2') format('woff2'),
+        url('fonts/Aleo-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
 * {
     margin: 0;
     padding: 0;
+    line-height: 1.5;
+}
+
+
+dialog {    
+    margin: auto;
+    border: none;
+    border-radius: 1rem;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 3px 5px 8px rgb(56, 56, 56);
+    background-color: rgba(0, 0, 255, 0.8);
+    color: white;
+}
+
+dialog::backdrop {
+    background-color: rgba(0,0,0,0.5);
+}
+
+dialog p {
+    margin-bottom: 1rem;
+}
+
+
+dialog button {
+    color: white;
+    border: 2px solid transparent;
+    border-radius: 2rem;
+    margin-right: 1rem;
+    padding: 0.5rem 1rem;
+    transition: all 100ms ease-in-out;
+}
+
+dialog button:hover {
+    border: 2px solid white;
+    cursor: pointer;
+    transition: all 100ms ease-in-out;
+}
+
+#confirm-delete {
+    background-color: rgb(69, 198, 69);
+}
+
+#cancel-delete {
+    background-color: rgb(255, 48, 48);
 }
 
 h1 {

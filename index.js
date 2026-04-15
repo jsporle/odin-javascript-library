@@ -17,7 +17,29 @@ function addBookToLibrary(bookObject) {
     myLibrary.push(bookObject);
 }
 
-//remove books
+//link to delete modal
+const deleteModal = document.querySelector('#delete-modal');
+const confirmBtn = document.querySelector('#confirm-delete');
+const cancelBtn = document.querySelector('#cancel-delete');
+
+let pendingBookDelete = null
+
+    //delete modal confirmation
+    confirmBtn.onclick = () => {
+        if (pendingBookDelete) {
+            const { bookDiv, id } = pendingBookDelete;
+            bookDiv.remove();
+            removeBookFromLibrary(id);
+            pendingBookDelete = null;
+        }
+        deleteModal.close();
+    };
+
+    cancelBtn.onclick = () => {
+        deleteModal.close();
+    };
+
+//remove book from array
 function removeBookFromLibrary(id) {
     const index = myLibrary.findIndex(book => book.ID === id);
     if (index > -1) {
@@ -46,10 +68,14 @@ function createBookCard(item) {
     delBtn.classList.add("delete-button");
     delBtn.textContent = "";
 
-        delBtn.onclick = (e) => {
-            const idToDelete = e.target.parentElement.dataset.uuid;
-            bookDiv.remove();
-            removeBookFromLibrary(idToDelete);
+        delBtn.onclick = () => {
+            pendingBookDelete = { bookDiv, id: item.ID };
+
+            //inject title in modal
+            const modalTitle = document.querySelector('#modal-book-title');
+            modalTitle.textContent = `"${item.title}"`;
+
+            deleteModal.showModal();
         }
 
     //book info
