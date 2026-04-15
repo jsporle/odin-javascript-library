@@ -3,6 +3,18 @@
     padding: 0;
 }
 
+h1 {
+    text-align: center;
+    text-decoration: underline;
+    padding-bottom: 0.5em;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    height: 100vh;
+}
+
 .current-library {
     padding: 2rem;
     display: grid;
@@ -22,4 +34,49 @@
     border: 0.1rem solid black;
     border-radius: 0.25rem 1rem 1rem 0.25rem;
     box-shadow: 10px 5px 5px rgb(164, 164, 164);
+}
+
+.container-add-book-form {
+    background-color: rgb(121, 175, 255);
+    padding: 1.75rem;
+    box-shadow: -5px 0px 5px rgb(164, 164, 164);
+}
+
+.add-book-form {
+    display: flex;
+    flex-flow: column;
+    gap: 0.3rem;
+}
+
+.add-book-form input[type="text"], .add-book-form select {
+    border: none;
+    padding: 0.25rem;
+    border-radius: 2rem;
+}
+
+.add-book-form input[type="submit"] {
+    color: white;
+    background-color: blue;
+    border: none;
+    align-self: center;
+    width: 8rem;
+    margin-top: 1rem;
+    padding: 0.75rem;
+    border-radius: 2rem;
+    transition: all 100ms ease-in-out;
+}
+
+.add-book-form input[type="submit"]:hover {
+    background-color: rgb(32, 32, 252);
+    border: 2px solid white;
+    cursor: pointer;
+    transform: scale(1.05, 1.0);
+    transition: all 100ms ease-in-out;
+}
+
+.add-book-form input[type="submit"]:active {
+    background-color: rgb(0, 0, 158);    
+    cursor: pointer;
+    transform: scale(0.95, 0.95);
+    transition: all 100ms ease-in-out;
 }

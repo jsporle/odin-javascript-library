@@ -10,6 +10,35 @@
 <body>
     <div class="container">
         <div class="current-library"></div>
+        <div class="container-add-book-form">
+            <h1>Want to add a new book?</h1>
+            <form action="" method="get" class="add-book-form">
+                <div class="add-book-form">
+                    <label for="title">Title:</label>
+                    <input type="text" name="title" id="title" required />
+                </div>
+                
+                <div class="add-book-form">
+                    <label for="author">Author:</label>
+                    <input type="text" name="author" id="author" required />
+                </div>
+
+                <div class="add-book-form">
+                    <label for="status">Reading status:</label>
+                    <select name="status" id="status">
+                        <option value="">--Please select your current reading status--</option>
+                        <option value="completed-reading">I have read this book.</option>
+                        <option value="currently-reading">I am currently reading this book.</option>
+                        <option value="want-to-read">I want to read this book.</option>
+                    </select>
+                </div>
+
+                <div class="add-book-form">
+                    <input type="submit" value="Add book" />
+                </div>
+
+            </form>
+        </div> 
     </div>
     
 </body>
