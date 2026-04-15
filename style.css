@@ -11,17 +11,17 @@
     margin: 0;
     padding: 0;
     line-height: 1.5;
+    font-family: "Aleo", sans-serif;
 }
-
 
 dialog {    
     margin: auto;
     border: none;
-    border-radius: 1rem;
+    border-radius: 2rem;
     padding: 2rem;
     text-align: center;
     box-shadow: 3px 5px 8px rgb(56, 56, 56);
-    background-color: rgba(0, 0, 255, 0.8);
+    background-color: rgba(28, 28, 28, 0.8);
     color: white;
 }
 
@@ -50,16 +50,24 @@ dialog button:hover {
 }
 
 #confirm-delete {
-    background-color: rgb(69, 198, 69);
+    background-color: rgb(57, 122, 57);
 }
 
 #cancel-delete {
-    background-color: rgb(255, 48, 48);
+    background-color: rgb(134, 27, 27);
+}
+
+#confirm-delete:active {
+    background-color: rgb(77, 168, 77);
+}
+
+#cancel-delete:active {
+    background-color: rgb(189, 38, 38);
 }
 
 h1 {
     text-align: center;
-    text-decoration: underline;
+    /* text-decoration: underline; */
     padding-bottom: 0.5em;
 }
 
