@@ -60,14 +60,20 @@ const libraryContainer = document.querySelector('.current-library');
 const sideForm = document.querySelector('.container-add-book-form');
 const toggleBtn = document.querySelector('#toggle-form');
 
+
+//html form toggle
 toggleBtn.addEventListener('click', () => {
     sideForm.classList.toggle('open');
+    toggleBtn.textContent = sideForm.classList.contains('open') ? '-' : '+';
 });
 
 document.querySelector('.add-book-form').addEventListener('submit', () => {
     sideForm.classList.remove('open');
-})
+    toggleBtn.textContent = '+'
+});
 
+
+//creating books
 function createBookCard(item) {
     const bookDiv = document.createElement("div");
     bookDiv.classList.add("book-card");
@@ -98,8 +104,37 @@ function createBookCard(item) {
     bookAuthor.textContent = `by ${item.author}`;
     bookAuthor.classList.add("book-author");
 
+    const statusSidebar = document.createElement("div");
+    statusSidebar.classList.add("status-sidebar");
+
+    const statuses = [
+        ['read', 'check_circle', 'completed-reading'],
+        ['reading', 'menu_book', 'currently-reading'],
+        ['want', 'bookmark', 'want-to-read']
+    ];
+
+    statuses.forEach(([suffix, icon, statusValue]) => {
+        const statBtn = document.createElement("button");
+        statBtn.classList.add("status-btn", suffix, "material-symbols-outlined");
+        statBtn.textContent = icon;
+        statBtn.type = "button";
+
+        if (item.status === statusValue) {
+            statBtn.classList.add("active");
+        }
+
+        statBtn.addEventListener("click", () => {
+            statusSidebar.querySelectorAll(".status-btn").forEach(b => b.classList.remove("active"));
+            statBtn.classList.add("active");
+            item.status = statusValue;
+        });
+
+        statusSidebar.appendChild(statBtn);
+    })
+
     //append
     bookDiv.appendChild(delBtn);
+    bookDiv.appendChild(statusSidebar);
     bookDiv.appendChild(bookTitle);
     bookDiv.appendChild(bookAuthor);
     

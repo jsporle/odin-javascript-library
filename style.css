@@ -7,6 +7,18 @@
     font-display: swap;
 }
 
+/* Google Fonts Material Symbols settings */
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 1,
+  'wght' 700,
+  'GRAD' 0,
+  'opsz' 48;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -103,14 +115,61 @@ h1 {
     border-radius: 0.25rem 1rem 1rem 0.25rem;
     box-shadow: 10px 5px 5px rgb(164, 164, 164);
 
+    z-index: 1;
+    transform-style: preserve-3d;
+
     transition: all 100ms ease-in-out;
+}
+
+.status-sidebar {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    bottom: 6%;
+    left: 85%;
+
+    transform: translateZ(-1px);
+    z-index: -1;
+    
+
+    transition: all 100ms ease-in-out;   
+}
+
+.status-btn {
+    background-color: black;
+    border-radius: 0rem 0.5rem 0.5rem 0rem;
+    color: rgb(168, 165, 165);
+    border: none;
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+}
+
+.status-btn.material-symbols-outlined {
+    font-family: "Material Symbols Outlined";
+    font-size: 0.9rem;
+}
+
+.status-btn.active {
+    color: rgb(255, 243, 110);
+}
+
+.status-btn:hover {
+    color: rgb(213, 252, 253);
 }
 
 .book-card:hover {
     background-color: black;
+    box-shadow: none;
     color: white;
     transform: scale(1.05);
     transition: all 100ms ease-in-out;
+}
+
+.book-card:hover .status-sidebar {
+    transform: translateX(1.35rem);
+    transition: transform 250ms ease-in-out 150ms;
 }
 
 .delete-button {
@@ -147,6 +206,8 @@ h1 {
     transform: scale(0.95);
     transition: all 100ms ease-in-out;
 }
+
+
 
 /* form stuff */
 
