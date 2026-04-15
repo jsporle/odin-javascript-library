@@ -16,6 +16,7 @@ h1 {
 }
 
 .current-library {
+    background-color: white;
     padding: 2rem;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));  
@@ -23,6 +24,8 @@ h1 {
 }
 
 .book-card {
+    background-color: rgb(254, 255, 238);
+    position: relative;
     display: flex;
     flex-flow: column;
     align-items: flex-end;
@@ -35,6 +38,50 @@ h1 {
     border: 0.1rem solid black;
     border-radius: 0.25rem 1rem 1rem 0.25rem;
     box-shadow: 10px 5px 5px rgb(164, 164, 164);
+
+    transition: all 100ms ease-in-out;
+}
+
+.book-card:hover {
+    background-color: black;
+    color: white;
+    transform: scale(1.05);
+    transition: all 100ms ease-in-out;
+}
+
+.delete-button {
+    opacity: 0;
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    color: white;
+    background-color: rgb(247, 129, 129);
+    width: 1.25rem;
+    height: 1.25rem;
+    border: none;
+    border-radius: 50%;
+    /* padding: 1rem; */
+    justify-self: flex-start;
+    align-self: flex-end;
+
+    transition: all 100ms ease-in-out;
+}
+
+.book-card:hover .delete-button {
+    opacity: 1;
+    transition: all 100ms ease-in-out;
+}
+
+.delete-button:hover {
+    cursor: pointer;
+    border: 2px solid white;
+    background-color: rgb(255, 159, 159);
+}
+
+.delete-button:active {
+    background-color: rgb(249, 86, 86);
+    transform: scale(0.95);
+    transition: all 100ms ease-in-out;
 }
 
 .container-add-book-form {

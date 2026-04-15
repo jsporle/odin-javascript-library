@@ -11,8 +11,18 @@ function Book(title, author, status) {
     this.status = status;
 }
 
+
+//add books
 function addBookToLibrary(bookObject) {
     myLibrary.push(bookObject);
+}
+
+//remove books
+function removeBookFromLibrary(id) {
+    const index = myLibrary.findIndex(book => book.ID === id);
+    if (index > -1) {
+        myLibrary.splice(index, 1);
+    }
 }
 
 //test books
@@ -29,7 +39,20 @@ function createBookCard(item) {
     const bookDiv = document.createElement("div");
     bookDiv.classList.add("book-card");
     bookDiv.id = item.ID;
+    bookDiv.dataset.uuid = item.ID;
 
+    //remove button
+    const delBtn = document.createElement("button");
+    delBtn.classList.add("delete-button");
+    delBtn.textContent = "";
+
+        delBtn.onclick = (e) => {
+            const idToDelete = e.target.parentElement.dataset.uuid;
+            bookDiv.remove();
+            removeBookFromLibrary(idToDelete);
+        }
+
+    //book info
     const bookTitle = document.createElement("h3");
     bookTitle.textContent = item.title;
     bookTitle.classList.add("book-title");
@@ -38,6 +61,8 @@ function createBookCard(item) {
     bookAuthor.textContent = `by ${item.author}`;
     bookAuthor.classList.add("book-author");
 
+    //append
+    bookDiv.appendChild(delBtn);
     bookDiv.appendChild(bookTitle);
     bookDiv.appendChild(bookAuthor);
     
