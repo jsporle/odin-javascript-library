@@ -92,6 +92,7 @@ h1 {
 /* library stuff */
 
 .current-library {
+    width: 90%;
     background-color: white;
     padding: 2rem;
     display: grid;
@@ -227,6 +228,7 @@ h1 {
 .container-add-book-form.open {
     transform: translateY(0%) translateX(-97%);
 }
+
 
 .toggle-form-btn {
     position: absolute;
