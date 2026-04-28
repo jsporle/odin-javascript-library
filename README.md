@@ -12,3 +12,8 @@ For this project I tried to incorporate the following:
 For future tweaks I'd consider the following:
 - change colour of book card depending on reading status (maybe traffic light system)
 - add sort a-z and filter status options
+
+2026.04.28
+- add js-class branch to test classes (lesson @ https://www.theodinproject.com/lessons/node-path-javascript-classes)
+- update js to use classes
+- use UI const to keep script a bit tidier
