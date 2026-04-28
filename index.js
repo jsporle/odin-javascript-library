@@ -1,51 +1,29 @@
-const myLibrary = [];
-
-//constructor for books with unique ID
-function Book(title, author, status) {
-    if (!new.target) {
-        throw Error("Constructor called without 'new' operator");
-    }
-    this.ID = crypto.randomUUID(); // assign random ID each time
-    this.title = title;
-    this.author = author;
-    this.status = status;
-}
-
-
-//add books
-function addBookToLibrary(bookObject) {
-    myLibrary.push(bookObject);
-}
-
-//link to delete modal
-const deleteModal = document.querySelector('#delete-modal');
-const confirmBtn = document.querySelector('#confirm-delete');
-const cancelBtn = document.querySelector('#cancel-delete');
-
-let pendingBookDelete = null
-
-    //delete modal confirmation
-    confirmBtn.onclick = () => {
-        if (pendingBookDelete) {
-            const { bookDiv, id } = pendingBookDelete;
-            bookDiv.remove();
-            removeBookFromLibrary(id);
-            pendingBookDelete = null;
-        }
-        deleteModal.close();
-    };
-
-    cancelBtn.onclick = () => {
-        deleteModal.close();
-    };
-
-//remove book from array
-function removeBookFromLibrary(id) {
-    const index = myLibrary.findIndex(book => book.ID === id);
-    if (index > -1) {
-        myLibrary.splice(index, 1);
+class Book {
+    constructor(title, author, status) {
+        this.ID = crypto.randomUUID(); // assign random ID each time
+        this.title = title;
+        this.author = author;
+        this.status = status;
     }
 }
+
+class Library {
+    constructor() {
+        this.books = [];
+    }
+
+    addBook(title, author,status) {
+        const newBook = new Book(title, author, status);
+        this.books.push(newBook);
+        return newBook;
+    }
+
+    removeBook(id) {
+        this.books = this.books.filter(book => book.ID !== id );
+    }
+}
+
+const myLibrary = new Library();
 
 //test books
 const testLibrary = [
@@ -71,28 +49,18 @@ const testLibrary = [
     ["Americanah", "Chimamanda Ngozi Adichie", "currently-reading"]
 ];
 
-testLibrary.forEach(data => {
-    addBookToLibrary(new Book(...data));
-});
+const UI = {
+    container: document.querySelector('.current-library'),
+    sideForm: document.querySelector('.container-add-book-form'),
+    bookForm: document.querySelector('.add-book-form'),
+    toggleBtn: document.querySelector('#toggle-form'),
+    modalTitle: document.querySelector('#modal-book-title'),
+    deleteModal: document.querySelector('#delete-modal'),
+    confirmBtn: document.querySelector('#confirm-delete'),
+    cancelBtn: document.querySelector('#cancel-delete')
+};
 
-//html display
-const libraryContainer = document.querySelector('.current-library');
-
-const sideForm = document.querySelector('.container-add-book-form');
-const toggleBtn = document.querySelector('#toggle-form');
-
-
-//html form toggle
-toggleBtn.addEventListener('click', () => {
-    sideForm.classList.toggle('open');
-    toggleBtn.textContent = sideForm.classList.contains('open') ? '-' : '+';
-});
-
-document.querySelector('.add-book-form').addEventListener('submit', () => {
-    sideForm.classList.remove('open');
-    toggleBtn.textContent = '+'
-});
-
+let pendingBookDelete = null
 
 //creating books
 function createBookCard(item) {
@@ -110,10 +78,9 @@ function createBookCard(item) {
             pendingBookDelete = { bookDiv, id: item.ID };
 
             //inject title in modal
-            const modalTitle = document.querySelector('#modal-book-title');
-            modalTitle.textContent = `"${item.title}"`;
+            UI.modalTitle.textContent = `"${item.title}"`;
 
-            deleteModal.showModal();
+            UI.deleteModal.showModal();
         }
 
     //book info
@@ -159,28 +126,48 @@ function createBookCard(item) {
     bookDiv.appendChild(bookTitle);
     bookDiv.appendChild(bookAuthor);
     
-    libraryContainer.appendChild(bookDiv);
+    UI.container.appendChild(bookDiv);
 };
 
-myLibrary.forEach(createBookCard);
+//delete modal confirmation
+UI.confirmBtn.onclick = () => {
+    if (pendingBookDelete) {
+        const { bookDiv, id } = pendingBookDelete;
+        bookDiv.remove();
+        myLibrary.removeBook(id);
+        pendingBookDelete = null;
+    }
+    UI.deleteModal.close();
+};
 
-// listen for html form input 
-const bookForm = document.querySelector('.add-book-form');
+UI.cancelBtn.onclick = () => {
+    UI.deleteModal.close();
+};
 
-bookForm.addEventListener('submit', (event) => {
-    event.preventDefault();
-
-    const formData = new FormData(bookForm);
-    const title = formData.get('title');
-    const author = formData.get('author');
-    const status = formData.get('status');
-
-    const newBook = new Book(title, author, status);
-    addBookToLibrary(newBook);
+testLibrary.forEach(data => {
+    const newBook = myLibrary.addBook(...data);
     createBookCard(newBook);
-
-    bookForm.reset();
-    console.log(myLibrary)
 });
 
+//html form toggle
+UI.toggleBtn.addEventListener('click', () => {
+    UI.sideForm.classList.toggle('open');
+    UI.toggleBtn.textContent = UI.sideForm.classList.contains('open') ? '-' : '+';
+});
 
+UI.bookForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(UI.bookForm);
+
+    const newBook = myLibrary.addBook(
+        formData.get('title'),
+        formData.get('author'),
+        formData.get('status')
+    );
+
+    createBookCard(newBook);
+    UI.bookForm.reset();
+    UI.sideForm.classList.remove('open');
+    UI.toggleBtn.textContent = '+';
+});
