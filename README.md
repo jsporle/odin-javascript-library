@@ -14,6 +14,12 @@ For future tweaks I'd consider the following:
 - add sort a-z and filter status options
 
 2026.04.28
+-add js-class branch to test classes (lesson @ https://www.theodinproject.com/lessons/node-path-javascript-classes)
+-update js to use classes
+-use UI const to keep script a bit tidier
+*update readme in main branch!
+
+2026.04.28
 - add js-class branch to test classes (lesson @ https://www.theodinproject.com/lessons/node-path-javascript-classes)
 - update js to use classes
 - use UI const to keep script a bit tidier
