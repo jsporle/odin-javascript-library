@@ -23,3 +23,6 @@ For future tweaks I'd consider the following:
 - add js-class branch to test classes (lesson @ https://www.theodinproject.com/lessons/node-path-javascript-classes)
 - update js to use classes
 - use UI const to keep script a bit tidier
+
+2026.05.13
+- add JS validation on form
