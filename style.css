@@ -249,6 +249,7 @@ h1 {
 }
 
 .add-book-form input[type="text"], .add-book-form select {
+    outline: none;
     border: none;
     padding: 0.25rem;
     border-radius: 2rem;
@@ -279,4 +280,27 @@ h1 {
     cursor: pointer;
     transform: scale(0.95, 0.95);
     transition: all 100ms ease-in-out;
+}
+
+/* validation */
+.add-book-form input[type="text"].invalid,
+.add-book-form select.invalid {
+    outline: none;
+    border: 2px solid rgb(116, 0, 0);
+    background-color: rgb(245, 194, 194);
+}
+
+.add-book-form input[type="text"].valid,
+.add-book-form select.valid {
+    outline: none;
+    border: 2px solid rgb(0, 68, 0);
+    background-color: rgb(213, 249, 213);
+}
+
+.error {
+    font-size: 70%;
+    font-weight: 900;
+    color: rgb(116, 0, 0);
+    margin-left: 1em;
+    margin-bottom: 2em;
 }

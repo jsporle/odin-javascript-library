@@ -156,6 +156,22 @@ UI.toggleBtn.addEventListener('click', () => {
 });
 
 UI.bookForm.addEventListener('submit', (event) => {
+    let isFormValid = true;
+
+    inputs.forEach((input) => {
+        const errorSpan = input.parentElement.querySelector('.error');
+
+        if (!input.validity.valid) {
+            showError(input, errorSpan);
+            isFormValid = false;
+        }
+    });
+
+    if (!isFormValid) {
+        event.preventDefault();
+        return;
+    }
+
     event.preventDefault();
 
     const formData = new FormData(UI.bookForm);
@@ -168,6 +184,69 @@ UI.bookForm.addEventListener('submit', (event) => {
 
     createBookCard(newBook);
     UI.bookForm.reset();
+    inputs.forEach(input => input.classList.remove('valid', 'invalid'));
     UI.sideForm.classList.remove('open');
     UI.toggleBtn.textContent = '+';
 });
+
+//form validation
+const form = document.querySelector('form');
+const inputs = form.querySelectorAll('input:not([type="submit"]), select');
+
+inputs.forEach((input) => {
+    input.addEventListener('input', () => {
+        const errorSpan = input.parentElement.querySelector('.error');
+
+        if (input.validity.valid) {
+            errorSpan.textContent = '';
+            errorSpan.classList.remove('error-active');
+            input.classList.remove('invalid');
+            input.classList.add('valid');
+        } else {
+            input.classList.add('invalid');
+            input.classList.remove('valid');
+            showError(input, errorSpan);
+        }
+    });
+});
+
+// submit event listener is in original code
+
+function showError(input, errorSpan) {
+    const errorMessages = {
+        title: 'Please include the name of the book.',
+        author: 'Please include the name of the author.',
+        status: 'Please select your current reading status.',
+    };
+
+    if (input.validity.valueMissing) {
+        input.classList.add('invalid')
+        errorSpan.textContent = errorMessages[input.id] || 'This field is required.';
+        errorSpan.classList.add('error-active');
+    }
+}
+
+
+// const formTitle = document.getElementById('title');
+// const formTitleError = document.querySelector('.title-error')
+
+// const formAuthor = document.getElementById('author');
+// const formAuthorError = document.querySelector('.author-error')
+
+
+// const formStatus = document.getElementById('status');
+// const formStatusError = document.querySelector('.status-error')
+
+// formTitle.addEventListener('input', (event) => {
+//     if (formTitle.validity.valid) {
+//         formTitleError.textContent = '';
+//     } else {
+//         showError();
+//     }
+// });
+
+
+
+
+
+
